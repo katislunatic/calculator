@@ -1,28 +1,12 @@
-html, body {
-  height: 100%;
-  overflow: hidden; /* Prevent scrolling */
-}
-
-.calc-wrap {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  transform-origin: top center;
-}
-
 /* --- GLOBAL --- */
 body {
   margin: 0;
   background: #000;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* FIX HERE */
-
+  align-items: center;
   height: 100vh;
-  overflow: hidden;
-  padding-top: 10px;
 }
 
 /* Entire calculator container */
@@ -220,34 +204,4 @@ canvas {
   width: 100%;
   border-radius: 10px;
   background: #000;
-}
-
-@media (max-height: 800px) {
-  .calc-wrap {
-    transform: scale(0.90);
-  }
-}
-
-@media (max-height: 720px) {
-  .calc-wrap {
-    transform: scale(0.82);
-  }
-}
-
-@media (max-height: 650px) {
-  .calc-wrap {
-    transform: scale(0.75);
-  }
-}
-
-@media (max-height: 580px) {
-  .calc-wrap {
-    transform: scale(0.68);
-  }
-}
-
-@media (max-height: 510px) {
-  .calc-wrap {
-    transform: scale(0.62);
-  }
 }
