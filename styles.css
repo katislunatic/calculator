@@ -1,30 +1,40 @@
 /* --- GLOBAL --- */
-body {
+html, body {
   margin: 0;
+  padding: 0;
   background: #000;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* allow scrolling */
+  height: auto !important;
+  overflow-y: auto !important;
+}
+
+body {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
+  align-items: flex-start;  /* allow content to extend downward */
+  padding-top: 20px;        /* spacing so it's not glued to the top */
 }
 
 /* Container scaled down */
 .calc-wrap {
   width: 100%;
-  max-width: 400px;   /* slightly narrower */
-  height: 100%;
-  padding: 12px;      /* smaller padding */
+  max-width: 400px;
+  padding: 12px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+
+  /* remove forced full height to allow scrolling */
+  height: auto;
 }
 
 /* --- HEADER --- */
 .calc-top {
   color: #aaa;
   font-size: 14px;
-  margin-bottom: 8px; /* smaller top spacing */
+  margin-bottom: 8px;
 }
 
 .ti-brand {
@@ -43,7 +53,7 @@ body {
   background: #444;
   color: white;
   border: none;
-  padding: 4px 10px;  /* smaller */
+  padding: 4px 10px;
   border-radius: 16px;
   font-size: 12px;
 }
@@ -52,9 +62,9 @@ body {
 .screen {
   background: #111;
   border-radius: 18px;
-  padding: 15px;      /* smaller */
+  padding: 15px;
   margin-bottom: 12px;
-  height: 110px;      /* slightly smaller */
+  height: 110px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -68,7 +78,7 @@ body {
 
 .display {
   color: white;
-  font-size: 38px;    /* slightly smaller */
+  font-size: 38px;
   text-align: right;
   overflow: hidden;
 }
@@ -77,16 +87,15 @@ body {
 .keys {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 8px;         /* tighter spacing */
+  grid-gap: 8px;
 }
 
-/* Smaller iOS-style buttons */
 .btn {
   background: #333;
   border: none;
   color: white;
-  padding: 14px;         /* smaller height */
-  font-size: 20px;       /* smaller text */
+  padding: 14px;
+  font-size: 20px;
   border-radius: 14px;
 }
 
@@ -95,13 +104,11 @@ body {
   font-size: 16px;
 }
 
-/* Operator buttons */
 .op {
   background: #f69906;
   color: white;
 }
 
-/* Function + alternate keys */
 .fn,
 .alt,
 .control {
@@ -117,7 +124,6 @@ body {
   font-size: 18px;
 }
 
-/* Backspace matches gray buttons */
 #back {
   background: #a5a5a5;
   color: black;
@@ -128,7 +134,7 @@ body {
   position: fixed;
   inset: 0;
   backdrop-filter: blur(5px);
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
