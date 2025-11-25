@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TI-84 CE — WebCalc</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="calc-wrap">
+    <header class="calc-top">
+      <div class="ti-brand">TI-84 Plus CE • WebCalc</div>
+      <div class="mode-row">
+        <div class="mode-label">MODE:</div>
+        <button id="degRadBtn" class="mode-btn">DEG</button>
+        <button id="graphBtn" class="mode-btn">Graph</button>
+      </div>
+    </header>
+
+    <section class="screen">
+      <div id="history" class="history"></div>
+      <div id="display" class="display">0</div>
+    </section>
+
+    <section class="keys">
+      <!-- row 1 -->
+      <button class="btn alt" data-value="(">(</button>
+      <button class="btn alt" data-value=")">)</button>
+      <button class="btn alt" data-value="%">%</button>
+      <button class="btn control" id="clear">CLEAR</button>
+
+      <!-- row 2 -->
+      <button class="btn fn" data-value="sin(">sin</button>
+      <button class="btn fn" data-value="cos(">cos</button>
+      <button class="btn fn" data-value="tan(">tan</button>
+      <button class="btn op" data-value="^">^</button>
+
+      <!-- row 3 -->
+      <button class="btn fn" data-value="log10(">log</button>
+      <button class="btn fn" data-value="ln(">ln</button>
+      <button class="btn fn" data-value="sqrt(">√</button>
+      <button class="btn op" data-value="/">÷</button>
+
+      <!-- row 4 -->
+      <button class="btn" data-value="7">7</button>
+      <button class="btn" data-value="8">8</button>
+      <button class="btn" data-value="9">9</button>
+      <button class="btn op" data-value="*">×</button>
+
+      <!-- row 5 -->
+      <button class="btn" data-value="4">4</button>
+      <button class="btn" data-value="5">5</button>
+      <button class="btn" data-value="6">6</button>
+      <button class="btn op" data-value="-">−</button>
+
+      <!-- row 6 -->
+      <button class="btn" data-value="1">1</button>
+      <button class="btn" data-value="2">2</button>
+      <button class="btn" data-value="3">3</button>
+      <button class="btn op" data-value="+">+</button>
+
+      <!-- row 7 -->
+      <button class="btn fn" data-value="0">0</button>
+      <button class="btn" data-value=".">.</button>
+      <button class="btn control" id="back">⌫</button>
+      <button class="btn equal" id="equals">ENTER</button>
+
+      <!-- row 8 extra -->
+      <button class="btn small" id="ansBtn">ANS</button>
+      <button class="btn small" data-value="!">!</button>
+      <button class="btn small" data-value=",">,</button>
+      <button class="btn small" id="piBtn">π</button>
+    </section>
+  </main>
+
+  <!-- Graph modal -->
+  <div id="graphModal" class="modal hidden" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span>Graph</span>
+        <button id="closeGraph">✕</button>
+      </div>
+      <div class="modal-body">
+        <label>y = <input id="graphExpr" placeholder="e.g. sin(x) * 2" /></label>
+        <div class="graph-controls">
+          <label>xmin: <input id="xmin" value="-10" /></label>
+          <label>xmax: <input id="xmax" value="10" /></label>
+          <button id="plotBtn">Plot</button>
+          <button id="clearPlot">Clear</button>
+        </div>
+        <canvas id="graphCanvas" width="720" height="360"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
