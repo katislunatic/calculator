@@ -15,10 +15,14 @@ body {
   margin: 0;
   background: #000;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; /* FIX HERE */
+
   height: 100vh;
+  overflow: hidden;
+  padding-top: 10px;
 }
 
 /* Entire calculator container */
