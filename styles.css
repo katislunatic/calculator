@@ -5,29 +5,26 @@ html, body {
   background: #000;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 
-  /* allow scrolling */
   height: auto !important;
+  min-height: 100%;
+  overflow-x: hidden !important;
   overflow-y: auto !important;
 }
 
+/* VERY IMPORTANT: remove centering that prevents scrolling */
 body {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;  /* allow content to extend downward */
-  padding-top: 20px;        /* spacing so it's not glued to the top */
+  display: block !important;
 }
 
-/* Container scaled down */
+/* --- CALCULATOR CONTAINER --- */
 .calc-wrap {
   width: 100%;
   max-width: 400px;
+  margin: 20px auto;   /* centers it without removing scroll */
   padding: 12px;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
 
-  /* remove forced full height to allow scrolling */
-  height: auto;
+  height: auto !important;     /* prevent scroll lock */
 }
 
 /* --- HEADER --- */
@@ -129,19 +126,23 @@ body {
   color: black;
 }
 
-/* --- MODAL (graph window) --- */
+/* --- MODAL --- */
 .modal {
   position: fixed;
   inset: 0;
   backdrop-filter: blur(5px);
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
+  background: rgba(0,0,0,0.6);
+  display: none;               /* important: fully hidden */
   justify-content: center;
   align-items: center;
 }
 
+.modal:not(.hidden) {
+  display: flex;
+}
+
 .hidden {
-  display: none;
+  display: none !important;    /* ensures it doesn’t overlay page */
 }
 
 .modal-content {
