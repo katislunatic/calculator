@@ -9,56 +9,52 @@ body {
   height: 100vh;
 }
 
-/* Entire calculator container */
+/* Container scaled down */
 .calc-wrap {
   width: 100%;
-  max-width: 430px;
+  max-width: 400px;   /* slightly narrower */
   height: 100%;
-  padding: 20px;
+  padding: 12px;      /* smaller padding */
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
 }
 
-/* --- HEADER / TOP INFO --- */
+/* --- HEADER --- */
 .calc-top {
   color: #aaa;
-  font-size: 16px;
-  margin-bottom: 15px;
+  font-size: 14px;
+  margin-bottom: 8px; /* smaller top spacing */
 }
 
 .ti-brand {
   text-align: center;
-  color: #888;
-  font-size: 14px;
-  margin-bottom: 5px;
+  color: #777;
+  font-size: 12px;
 }
 
 .mode-row {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 6px;
 }
 
 .mode-btn {
   background: #444;
   color: white;
   border: none;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 14px;
-}
-.mode-btn:active {
-  filter: brightness(1.2);
+  padding: 4px 10px;  /* smaller */
+  border-radius: 16px;
+  font-size: 12px;
 }
 
 /* --- DISPLAY --- */
 .screen {
   background: #111;
-  border-radius: 20px;
-  padding: 20px;
-  margin-bottom: 20px;
-  height: 140px;
+  border-radius: 18px;
+  padding: 15px;      /* smaller */
+  margin-bottom: 12px;
+  height: 110px;      /* slightly smaller */
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -66,13 +62,13 @@ body {
 
 .history {
   color: #888;
-  font-size: 18px;
-  min-height: 20px;
+  font-size: 14px;
+  min-height: 16px;
 }
 
 .display {
   color: white;
-  font-size: 48px;
+  font-size: 38px;    /* slightly smaller */
   text-align: right;
   overflow: hidden;
 }
@@ -81,37 +77,31 @@ body {
 .keys {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 12px;
-  flex-grow: 1;
+  grid-gap: 8px;         /* tighter spacing */
 }
 
-/* Base button style (iOS rounded-square) */
+/* Smaller iOS-style buttons */
 .btn {
   background: #333;
   border: none;
   color: white;
-  padding: 20px;
-  font-size: 24px;
-  border-radius: 16px;
-  text-align: center;
-}
-
-.btn:active {
-  filter: brightness(1.25);
+  padding: 14px;         /* smaller height */
+  font-size: 20px;       /* smaller text */
+  border-radius: 14px;
 }
 
 .btn.small {
-  font-size: 18px;
-  padding: 12px;
+  padding: 10px;
+  font-size: 16px;
 }
 
-/* Orange operators (iOS style) */
+/* Operator buttons */
 .op {
   background: #f69906;
   color: white;
 }
 
-/* Light gray function keys (sin, cos, CLEAR, etc) */
+/* Function + alternate keys */
 .fn,
 .alt,
 .control {
@@ -120,23 +110,17 @@ body {
   font-weight: 500;
 }
 
-/* Enter button (big orange like iOS "=") */
 .equal {
   background: #f69906;
   color: white;
-  font-size: 20px;
   font-weight: bold;
+  font-size: 18px;
 }
 
-/* Backspace uses same style as gray buttons */
+/* Backspace matches gray buttons */
 #back {
   background: #a5a5a5;
   color: black;
-}
-
-/* Special button shapes */
-.btn[data-value="0"] {
-  grid-column: span 1; /* Keep TI layout */
 }
 
 /* --- MODAL (graph window) --- */
@@ -156,38 +140,38 @@ body {
 
 .modal-content {
   background: #222;
-  border-radius: 20px;
-  padding: 20px;
+  border-radius: 18px;
+  padding: 15px;
   width: 90%;
-  max-width: 500px;
+  max-width: 460px;
   color: white;
 }
 
 .modal-header {
   display: flex;
   justify-content: space-between;
-  font-size: 20px;
-  margin-bottom: 15px;
+  font-size: 18px;
+  margin-bottom: 10px;
 }
 
 .modal-body label {
   display: block;
-  margin: 8px 0;
+  margin: 5px 0;
   color: #ccc;
 }
 
 .modal-body input {
-  padding: 6px;
-  border-radius: 10px;
+  padding: 5px;
+  border-radius: 8px;
   border: none;
-  width: 90px;
+  width: 80px;
   background: #333;
   color: white;
 }
 
 .graph-controls {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   margin: 10px 0;
 }
 
@@ -195,8 +179,8 @@ body {
 #clearPlot {
   background: #f69906;
   border: none;
-  padding: 8px 14px;
-  border-radius: 12px;
+  padding: 6px 12px;
+  border-radius: 10px;
   color: white;
 }
 
