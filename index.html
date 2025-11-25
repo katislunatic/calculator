@@ -1,88 +1,146 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>TI-84 CE WebCalc</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Calculator</title>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .calc {
+      width: 100%;
+      max-width: 420px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      background: #000;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    #display {
+      flex: 1;
+      width: 100%;
+      text-align: right;
+      font-size: 60px;
+      color: white;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 12px;
+      padding-bottom: 20px;
+    }
+
+    .btn {
+      background: #333;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 30px;
+      padding: 25px;
+    }
+
+    .btn:active {
+      filter: brightness(1.3);
+    }
+
+    .op {
+      background: #f69906;
+    }
+
+    .gray {
+      background: #a5a5a5;
+      color: #000;
+    }
+
+    .zero {
+      grid-column: span 2;
+    }
+  </style>
 </head>
 <body>
-  <main class="calc-wrap">
-    <header class="calc-top">
-      <div class="ti-brand">TI-84 Plus CE • WebCalc</div>
-      <div class="mode-row">
-        <button id="degRadBtn" class="mode-btn">DEG</button>
-        <button id="graphBtn" class="mode-btn">GRAPH</button>
-      </div>
-    </header>
 
-    <section class="screen">
-      <div id="history" class="history"></div>
-      <div id="display" class="display">0</div>
-    </section>
+  <div class="calc">
+    <div id="display">0</div>
 
-    <section class="keys">
-      <button class="btn alt" data-value="(">(</button>
-      <button class="btn alt" data-value=")">)</button>
-      <button class="btn alt" data-value="%">%</button>
-      <button class="btn control" id="clear">CLEAR</button>
+    <div class="buttons">
+      <button class="btn gray" onclick="clearDisplay()">AC</button>
+      <button class="btn gray" onclick="plusMinus()">±</button>
+      <button class="btn gray" onclick="percent()">%</button>
+      <button class="btn op" onclick="press('/')">÷</button>
 
-      <button class="btn fn" data-value="sin(">sin</button>
-      <button class="btn fn" data-value="cos(">cos</button>
-      <button class="btn fn" data-value="tan(">tan</button>
-      <button class="btn op" data-value="^">^</button>
+      <button class="btn" onclick="press('7')">7</button>
+      <button class="btn" onclick="press('8')">8</button>
+      <button class="btn" onclick="press('9')">9</button>
+      <button class="btn op" onclick="press('*')">×</button>
 
-      <button class="btn fn" data-value="log(">log</button>
-      <button class="btn fn" data-value="ln(">ln</button>
-      <button class="btn fn" data-value="sqrt(">√</button>
-      <button class="btn op" data-value="/">÷</button>
+      <button class="btn" onclick="press('4')">4</button>
+      <button class="btn" onclick="press('5')">5</button>
+      <button class="btn" onclick="press('6')">6</button>
+      <button class="btn op" onclick="press('-')">−</button>
 
-      <button class="btn" data-value="7">7</button>
-      <button class="btn" data-value="8">8</button>
-      <button class="btn" data-value="9">9</button>
-      <button class="btn op" data-value="*">×</button>
+      <button class="btn" onclick="press('1')">1</button>
+      <button class="btn" onclick="press('2')">2</button>
+      <button class="btn" onclick="press('3')">3</button>
+      <button class="btn op" onclick="press('+')">+</button>
 
-      <button class="btn" data-value="4">4</button>
-      <button class="btn" data-value="5">5</button>
-      <button class="btn" data-value="6">6</button>
-      <button class="btn op" data-value="-">−</button>
-
-      <button class="btn" data-value="1">1</button>
-      <button class="btn" data-value="2">2</button>
-      <button class="btn" data-value="3">3</button>
-      <button class="btn op" data-value="+">+</button>
-
-      <button class="btn" data-value="0">0</button>
-      <button class="btn" data-value=".">.</button>
-      <button class="btn control" id="back">⌫</button>
-      <button class="btn equal" id="equals">ENTER</button>
-
-      <button class="btn small" id="ansBtn">ANS</button>
-      <button class="btn small" data-value="!">!</button>
-      <button class="btn small" id="piBtn">π</button>
-    </section>
-  </main>
-
-  <!-- GRAPHING WINDOW -->
-  <div id="graphModal" class="modal hidden">
-    <div class="modal-content">
-      <div class="modal-header">
-        Graphing
-        <button id="closeGraph">✕</button>
-      </div>
-      <div class="modal-body">
-        <label>y = <input id="graphExpr" placeholder="sin(x)" /></label>
-        <div class="graph-controls">
-          <label>x min: <input id="xmin" value="-10"></label>
-          <label>x max: <input id="xmax" value="10"></label>
-          <button id="plotBtn">Plot</button>
-          <button id="clearPlot">Clear</button>
-        </div>
-        <canvas id="graphCanvas" width="800" height="400"></canvas>
-      </div>
+      <button class="btn zero" onclick="press('0')">0</button>
+      <button class="btn" onclick="press('.')">.</button>
+      <button class="btn op" onclick="calculate()">=</button>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    let display = document.getElementById("display");
+    let input = "";
+
+    function press(v) {
+      if (input === "0") input = "";
+      input += v;
+      display.innerText = input;
+    }
+
+    function clearDisplay() {
+      input = "0";
+      display.innerText = input;
+    }
+
+    function calculate() {
+      try {
+        input = eval(input).toString();
+        display.innerText = input;
+      } catch {
+        display.innerText = "Error";
+      }
+    }
+
+    function plusMinus() {
+      if (!input) return;
+      input = (parseFloat(input) * -1).toString();
+      display.innerText = input;
+    }
+
+    function percent() {
+      input = (parseFloat(input) / 100).toString();
+      display.innerText = input;
+    }
+  </script>
+
 </body>
 </html>
